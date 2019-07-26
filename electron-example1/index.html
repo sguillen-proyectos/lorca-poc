@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Electron Hello World</title>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello World!</h1>
+  <button id="btn-cool">Do some cool stuff</button>
+  <br />
+  Acessing operating systemc resources: <span id="message" />
+
+<script type="text/javascript">
+  function handleClick() {
+    const {spawn} = require('child_process');
+    spawn('xcalc');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const environmentVariables = process.env;
+    let message = '<br />'
+    message += `HOME: ${environmentVariables['HOME']}<br />`;
+    message += `PATH: ${environmentVariables['PATH']}<br />`
+    document.getElementById('message').innerHTML = message;
+
+    document.getElementById('btn-cool').addEventListener('click', handleClick);
+  });
+</script>
+</body>
+</html>
